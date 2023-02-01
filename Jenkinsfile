@@ -1,7 +1,7 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent {         docker {
-            image 'ubuntu'
+            image 'maven:3.5.0'
             args '--user=root'
         } }
     
