@@ -10,7 +10,7 @@ pipeline {
             steps {
                 sh 'export FLASK_APP=app'
                 sh 'export FLASK_ENV=development'
-                sh 'python3 run flask'
+                sh 'flask run --host=0.0.0.0'
             }
         }
     }
