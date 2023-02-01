@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh ' pat-get install python3'
+                sh 'apt-get install python3'
                 sh 'export FLASK_APP=app'
                 sh 'export FLASK_ENV=development'
                 sh 'flask run --host=0.0.0.0'
