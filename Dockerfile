@@ -1,4 +1,4 @@
-FROM pyhon:3
+FROM python:3
 COPY . .
 ENV FLASK_APP = app
 EXPOSE 5000
