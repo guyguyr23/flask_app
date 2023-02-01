@@ -1,7 +1,7 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent {         docker {
-            image 'ubuntu:latest'
+            image 'python:3.10.7-alpine'
             args '--user=root'
         } }
     
@@ -10,6 +10,7 @@ pipeline {
             steps {
                 sh 'export FLASK_APP=app'
                 sh 'export FLASK_ENV=development'
+                sh 'python3 run flask'
             }
         }
     }
