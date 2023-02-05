@@ -4,6 +4,7 @@ pipeline {
     environment {
         AWS_ACCESS_KEY_ID = credentials("AWS_ACCESS_KEY_ID")
         AWS_SECRET_ACCESS_KEY = credentials("AWS_SECRET_KEY_ID")
+        devops_key=credentials("devops.pem")
     }
     stages {
         stage('build') {
@@ -22,7 +23,7 @@ pipeline {
         stage('connect and run'){
             steps{
                 sh '''
-                ssh 18.233.62.82
+                ssh -i ${devops_key} ubuntu@18.233.62.82
                 docker pull 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
                 docker run -itd -p 5000:5000 --name flask_app_conatiner 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
                 '''
