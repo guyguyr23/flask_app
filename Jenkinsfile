@@ -22,11 +22,11 @@ pipeline {
         }
         stage('connect and run'){
             steps{
-                sh '''
-                ssh -i ${devops_key} ubuntu@18.233.62.82
-                docker pull 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
-                docker run -itd -p 5000:5000 --name flask_app_conatiner 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
-                '''
+                 script {
+                    sshagent(['ssh-key']) {
+                        sh "ssh -o StrictHostKeyChecking=no -i ${devops_key ubuntu@18.233.62.82
+                    }
+                 }
             }
         }
     }
