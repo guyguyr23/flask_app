@@ -20,7 +20,7 @@ pipeline {
                 '''
             }
         }
-        def remote = [:]
+        def remote:
             remote.name = 'ip-10-0-0-36'
             remote.host = '18.233.62.82'
             remote.user = 'ubuntu'
