@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Remote SSH') {
             steps{
-                 sshPublisher(publishers: [sshPublisherDesc(configName: '18.233.62.82 ', transfers: [ sshTransfer(execCommand: command    )])])
+                 sh 'ssh -i ~/devops.pem ubuntu@18.233.62.82'
             }
         }
     }
