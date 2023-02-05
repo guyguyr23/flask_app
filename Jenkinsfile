@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Remote SSH') {
             steps{
-                 sh 'ssh -tt -i ~/devops.pem ubuntu@18.233.62.82'
+                 sh 'ssh -T -i ~/devops.pem ubuntu@18.233.62.82 << ls'
             }
         }
     }
