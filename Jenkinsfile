@@ -24,7 +24,7 @@ pipeline {
             steps{
                  script {
                     sshagent(['ssh-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no -i ${devops_key ubuntu@18.233.62.82
+                        sh "ssh -o StrictHostKeyChecking=no -i ${devops_key} ubuntu@18.233.62.82
                     }
                  }
             }
