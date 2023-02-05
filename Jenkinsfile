@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
+                sh 'ls'
+                sh 'pwd'
                 sh 'docker build -t my_image .'
             }
         }
