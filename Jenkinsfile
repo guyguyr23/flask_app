@@ -20,14 +20,15 @@ pipeline {
                 '''
             }
         }
-        stage('connect and run'){
-            steps{
-                 script {
-                    sshagent(['ssh-key']) {
-                        sh "ssh -o StrictHostKeyChecking=no -i ${devops_key} ubuntu@18.233.62.82"
-                    }
-                 }
-            }
+        def remote = [:]
+        remote.name = 'ip-10-0-0-36'
+        remote.host = '18.233.62.82'
+        remote.user = 'ubuntu'
+        remote.allowAnyHosts = true
+        remote.identityFile = ${devops_key}
+        stage('Remote SSH') {
+          sshCommand remote: remote, command: "ls -lrt"
+          sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"
         }
     }
 }
