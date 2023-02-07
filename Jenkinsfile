@@ -23,7 +23,8 @@ pipeline {
         }
         stage('Remote SSH') {
             steps{ 
-                 sh 'ssh -T -i ~/devops.pem ubuntu@3.80.19.2 ./jenkins_conteiner_install_pipline.sh'
+                 sh 'public_in=$(aws ec2 describe-instances --instance-ids  i-0d00c0c29fe7a59dd  --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)'
+                 sh 'ssh -T -i ~/devops.pem ubuntu@$public_in ./jenkins_conteiner_install_pipline.sh'
             }
         }
     }
