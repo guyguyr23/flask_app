@@ -1,6 +1,9 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
-    agent any
+    agent {
+        any
+        args '--user=root'
+    }
     environment {
         AWS_ACCESS_KEY_ID = credentials("AWS_ACCESS_KEY_ID")
         AWS_SECRET_ACCESS_KEY = credentials("AWS_SECRET_KEY_ID")
@@ -22,8 +25,7 @@ pipeline {
         }
         stage('Remote SSH') {
             steps{
-                sh 'cat ~/devops.pem'
-                 sh 'ssh -T -i ~/devops.pem ubuntu@18.233.62.82 << ls'
+                sh 'ssh -T -i ~/devops.pem ubuntu@18.233.62.82 ls'
             }
         }
     }
