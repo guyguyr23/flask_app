@@ -1,8 +1,9 @@
 /* Requires the Docker Pipeline plugin */
 pipeline {
     agent {
-        any
-        args '--user=root'
+        any {
+             args '--user=root'
+        }
     }
     environment {
         AWS_ACCESS_KEY_ID = credentials("AWS_ACCESS_KEY_ID")
