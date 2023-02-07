@@ -27,7 +27,9 @@ pipeline {
         stage('Remote SSH') {
             steps{
                 sh '''
-                 ssh -T -i ~/devops.pem ubuntu@3.80.19.2 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 848215208608.dkr.ecr.us-east-1.amazonaws.com ; docker pull 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app ;  docker run -itd -p 5000:5000 --name container_name2 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app               
+                 ssh -T -i ~/devops.pem ubuntu@3.80.19.2 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 848215208608.dkr.ecr.us-east-1.amazonaws.com        
+                 ssh -T -i ~/devops.pem ubuntu@3.80.19.2 docker pull 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
+                 ssh -T -i ~/devops.pem ubuntu@3.80.19.2 docker run -itd -p 5000:5000 --name container_name2 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app
                  '''
             }
         }
