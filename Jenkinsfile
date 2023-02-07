@@ -26,7 +26,8 @@ pipeline {
         }
         stage('Remote SSH') {
             steps{
-                sh 'ssh -T -i ~/devops.pem ubuntu@3.80.19.2 ls'
+                sh 'ssh -T -i ~/devops.pem ubuntu@3.80.19.2 docker pull 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app'
+                sh 'ssh -i ~/devops.pem ubuntu@3.80.19.2 docker run -itd -p 5000:5000 --name container_name 848215208608.dkr.ecr.us-east-1.amazonaws.com/flask_app'
             }
         }
     }
