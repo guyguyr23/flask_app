@@ -24,7 +24,8 @@ pipeline {
         stage('Remote SSH') {
             steps{ 
                 sh '''
-                PUBLIC_IP=$(aws ec2 describe-instances --instance-ids i-0d00c0c29fe7a59dd --query "Reservations[0].Instances[0].PublicIpAddress" --output text)  
+                PUBLIC_IP=$(aws ec2 describe-instances --instance-ids i-0d00c0c29fe7a59dd --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
+                ssh-keyscan -H $PUBLIC_IP >> ~/.ssh/known_hosts
                 ssh -T -i ~/devops.pem ubuntu@$PUBLIC_IP ./jenkins_conteiner_install_pipline.sh
                 '''
             }
